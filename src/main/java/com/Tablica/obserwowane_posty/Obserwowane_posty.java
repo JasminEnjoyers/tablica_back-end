@@ -1,6 +1,12 @@
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 @Entity
 public class Obserwowane_posty {
+    @Column
     private long id_uzytkownika;
+    @Column
     private long id_ogloszenia;
 
 

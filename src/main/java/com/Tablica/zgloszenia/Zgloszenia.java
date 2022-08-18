@@ -1,7 +1,14 @@
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 @Entity
 public class Zgloszenia {
+    @Column
     private long id_uzytkownika;
+    @Column
     private long id_ogloszenia;
+    @Column
     private String tekst;
 
 

@@ -1,14 +1,20 @@
-@entity
+import javax.persistence.*;
+import java.sql.Date;
+
+
+@Entity
 public class Ogloszenia {
     @Id
     private long id;
-
-    @ManyToOne
-    @JoinColumn(name = "id")
+    @Column
     private long id_autora;
+    @Column
     private long id_kategorii;
+    @Column
     private long ocena;
+    @Column
     private String tytul;
+    @Column
     private Date data;
 
 

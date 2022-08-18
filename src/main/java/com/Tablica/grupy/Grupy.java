@@ -1,8 +1,12 @@
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Entity
 public class Grupy {
     @Id
-    @OneToMany
     private long id;
+    @Column
     private String nazwa;
 
 

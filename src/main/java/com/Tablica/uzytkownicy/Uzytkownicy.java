@@ -1,16 +1,26 @@
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Entity
 public class Uzytkownicy {
     @Id
     private long id;
+    @Column
     private String email;
-    @ManyToOne
-    @JoinColumn(name = "id")
+    @Column
     private long id_grupy;
+    @Column
     private String telefon;
+    @Column
     private long reputacja;
+    @Column
     private String nazwa;
+    @Column
     private String imie;
+    @Column
     private String nazwisko;
+    @Column
     private String haslo;
 
 
