@@ -1,11 +1,11 @@
-package com.Tablica.obserwowane_posty;
+package com.Tablica.obserwowanePosty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Obserwowane_posty {
+public class ObserwowanePosty {
     @Id
     private long id_uzytkownika;
     @Column
@@ -14,10 +14,10 @@ public class Obserwowane_posty {
 
 //CONSTRUCTORS
 
-    public Obserwowane_posty() {
+    public ObserwowanePosty() {
     }
 
-    public Obserwowane_posty(long id_uzytkownika, long id_ogloszenia) {
+    public ObserwowanePosty(long id_uzytkownika, long id_ogloszenia) {
         this.id_uzytkownika = id_uzytkownika;
         this.id_ogloszenia = id_ogloszenia;
     }
