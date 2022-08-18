@@ -1,11 +1,11 @@
-package com.Tablica.ogloszenia;
+package com.Tablica.ogloszenie;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 
 @Entity
-public class Ogloszenia {
+public class Ogloszenie {
     @Id
     private long id;
     @Column
@@ -22,10 +22,10 @@ public class Ogloszenia {
 
 //CONSTRUCTORS
 
-    public Ogloszenia() {
+    public Ogloszenie() {
     }
 
-    public Ogloszenia(long id, long id_autora, long id_kategorii, long ocena, String tytul, Date data) {
+    public Ogloszenie(long id, long id_autora, long id_kategorii, long ocena, String tytul, Date data) {
         this.id = id;
         this.id_autora = id_autora;
         this.id_kategorii = id_kategorii;

@@ -1,11 +1,11 @@
-package com.Tablica.grupy;
+package com.Tablica.kategoria;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Grupy {
+public class Kategoria {
     @Id
     private long id;
     @Column
@@ -14,10 +14,10 @@ public class Grupy {
 
 //CONSTRUCTORS
 
-    public Grupy() {
+    public Kategoria() {
     }
 
-    public Grupy(long id, String nazwa) {
+    public Kategoria(long id, String nazwa) {
         this.id = id;
         this.nazwa = nazwa;
     }
@@ -41,3 +41,4 @@ public class Grupy {
         this.nazwa = nazwa;
     }
 }
+

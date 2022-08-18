@@ -1,9 +1,9 @@
-package com.Tablica.uzytkownicy;
+package com.Tablica.grupa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UzytkownicyRepository extends JpaRepository<Uzytkownicy,Long> {
-
+public interface GrupaRepository extends JpaRepository<Grupa,Long> {
+    Grupa findAllById(Long id);
 }

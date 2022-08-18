@@ -1,9 +1,9 @@
-package com.Tablica.ogloszenia;
+package com.Tablica.uzytkownik;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OgloszeniaRepository extends JpaRepository<Ogloszenia,Long> {
+public interface UzytkownikRepository extends JpaRepository<Uzytkownik,Long> {
 
 }

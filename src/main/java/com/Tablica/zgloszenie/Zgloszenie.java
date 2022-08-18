@@ -1,25 +1,30 @@
-package com.Tablica.obserwowanePosty;
+package com.Tablica.zgloszenie;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class ObserwowanePosty {
+public class Zgloszenie {
     @Id
+    private long id_zgloszenia;
+    @Column
     private long id_uzytkownika;
     @Column
     private long id_ogloszenia;
+    @Column
+    private String tekst;
 
 
 //CONSTRUCTORS
 
-    public ObserwowanePosty() {
+    public Zgloszenie() {
     }
 
-    public ObserwowanePosty(long id_uzytkownika, long id_ogloszenia) {
+    public Zgloszenie(long id_uzytkownika, long id_ogloszenia, String tekst) {
         this.id_uzytkownika = id_uzytkownika;
         this.id_ogloszenia = id_ogloszenia;
+        this.tekst = tekst;
     }
 
 
@@ -39,5 +44,13 @@ public class ObserwowanePosty {
 
     public void setId_ogloszenia(long id_ogloszenia) {
         this.id_ogloszenia = id_ogloszenia;
+    }
+
+    public String getTekst() {
+        return tekst;
+    }
+
+    public void setTekst(String tekst) {
+        this.tekst = tekst;
     }
 }

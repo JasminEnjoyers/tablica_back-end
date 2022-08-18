@@ -1,11 +1,11 @@
-package com.Tablica.uzytkownicy;
+package com.Tablica.uzytkownik;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Uzytkownicy {
+public class Uzytkownik {
     @Id
     private long id;
     @Column
@@ -28,10 +28,10 @@ public class Uzytkownicy {
 
 //CONSTRUCTORS
 
-    public Uzytkownicy() {
+    public Uzytkownik() {
     }
 
-    public Uzytkownicy(long id, String email, long id_grupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
+    public Uzytkownik(long id, String email, long id_grupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
         this.id = id;
         this.email = email;
         this.id_grupy = id_grupy;
