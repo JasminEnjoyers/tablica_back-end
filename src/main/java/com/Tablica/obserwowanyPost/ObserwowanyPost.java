@@ -1,4 +1,4 @@
-package com.Tablica.obserwowanePost;
+package com.Tablica.obserwowanyPost;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "obserwowany_post")
-public class ObserwowanePost {
+public class ObserwowanyPost {
     @Id
     private long id_uzytkownika;
     @Column
@@ -16,10 +16,10 @@ public class ObserwowanePost {
 
 //CONSTRUCTORS
 
-    public ObserwowanePost() {
+    public ObserwowanyPost() {
     }
 
-    public ObserwowanePost(long id_uzytkownika, long id_ogloszenia) {
+    public ObserwowanyPost(long id_uzytkownika, long id_ogloszenia) {
         this.id_uzytkownika = id_uzytkownika;
         this.id_ogloszenia = id_ogloszenia;
     }
