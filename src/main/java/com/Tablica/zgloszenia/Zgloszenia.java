@@ -1,9 +1,13 @@
+package com.Tablica.zgloszenia;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
 @Entity
 public class Zgloszenia {
+    @Id
+    private long id_zgloszenia;
     @Column
     private long id_uzytkownika;
     @Column

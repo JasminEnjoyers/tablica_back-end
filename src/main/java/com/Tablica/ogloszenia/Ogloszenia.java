@@ -1,3 +1,5 @@
+package com.Tablica.ogloszenia;
+
 import javax.persistence.*;
 import java.sql.Date;
 

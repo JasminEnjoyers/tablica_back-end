@@ -1,3 +1,5 @@
+package com.Tablica.uzytkownicy;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
