@@ -21,7 +21,8 @@ public class Zgloszenie {
     public Zgloszenie() {
     }
 
-    public Zgloszenie(long id_uzytkownika, long id_ogloszenia, String tekst) {
+    public Zgloszenie(long id_zgloszenia, long id_uzytkownika, long id_ogloszenia, String tekst) {
+        this.id_zgloszenia = id_zgloszenia;
         this.id_uzytkownika = id_uzytkownika;
         this.id_ogloszenia = id_ogloszenia;
         this.tekst = tekst;
@@ -30,6 +31,13 @@ public class Zgloszenie {
 
 //GETTERS AND SETTERS
 
+    public long getId_zgloszenia() {
+        return id_zgloszenia;
+    }
+
+    public void setId_zgloszenia(long id_zgloszenia) {
+        this.id_zgloszenia = id_zgloszenia;
+    }
     public long getId_uzytkownika() {
         return id_uzytkownika;
     }

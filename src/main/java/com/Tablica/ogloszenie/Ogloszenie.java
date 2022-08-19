@@ -1,6 +1,8 @@
 package com.Tablica.ogloszenie;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 
 
@@ -17,6 +19,8 @@ public class Ogloszenie {
     @Column
     private String tytul;
     @Column
+    private String tekst;
+    @Column (name = "data_dodania")
     private Date data;
 
 
@@ -25,17 +29,17 @@ public class Ogloszenie {
     public Ogloszenie() {
     }
 
-    public Ogloszenie(long id, long id_autora, long id_kategorii, long ocena, String tytul, Date data) {
+    public Ogloszenie(long id, long id_autora, long id_kategorii, long ocena, String tytul, String tekst, Date data) {
         this.id = id;
         this.id_autora = id_autora;
         this.id_kategorii = id_kategorii;
         this.ocena = ocena;
         this.tytul = tytul;
+        this.tekst = tekst;
         this.data = data;
     }
 
-
-//GETTERS AND SETTERS
+    //GETTERS AND SETTERS
 
     public long getId() {
         return id;
@@ -75,6 +79,14 @@ public class Ogloszenie {
 
     public void setTytul(String tytul) {
         this.tytul = tytul;
+    }
+
+    public String getTekst() {
+        return tekst;
+    }
+
+    public void setTekst(String tekst) {
+        this.tekst = tekst;
     }
 
     public Date getData() {
