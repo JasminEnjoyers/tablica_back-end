@@ -15,7 +15,7 @@ public class GrupaController {
     @ResponseStatus(HttpStatus.OK)
     public void test(){
         // do zmiany
-        grupaRepository.save(new Grupa(2,"test"));
+        grupaRepository.save(new Grupa("test"));
         System.out.println("test");
     }
 }

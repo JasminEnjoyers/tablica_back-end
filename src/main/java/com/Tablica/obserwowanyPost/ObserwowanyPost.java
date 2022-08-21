@@ -1,14 +1,12 @@
 package com.Tablica.obserwowanyPost;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "obserwowany_post")
+@Table ( name = "obserwowane_posty" )
 public class ObserwowanyPost {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
     private long id_uzytkownika;
@@ -21,8 +19,8 @@ public class ObserwowanyPost {
     public ObserwowanyPost() {
     }
 
-    public ObserwowanyPost(long id, long id_uzytkownika, long id_ogloszenia) {
-        this.id = id;
+    public ObserwowanyPost(long id_uzytkownika, long id_ogloszenia) {
+        super();
         this.id_uzytkownika = id_uzytkownika;
         this.id_ogloszenia = id_ogloszenia;
     }
