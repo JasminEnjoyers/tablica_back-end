@@ -1,14 +1,14 @@
 package com.Tablica.ogloszenie;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 
 @Entity
+@Table ( name = "ogloszenia" )
 public class Ogloszenie {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
     private long id_autora;
@@ -29,8 +29,8 @@ public class Ogloszenie {
     public Ogloszenie() {
     }
 
-    public Ogloszenie(long id, long id_autora, long id_kategorii, long ocena, String tytul, String tekst, Date data) {
-        this.id = id;
+    public Ogloszenie(long id_autora, long id_kategorii, long ocena, String tytul, String tekst, Date data) {
+        super();
         this.id_autora = id_autora;
         this.id_kategorii = id_kategorii;
         this.ocena = ocena;

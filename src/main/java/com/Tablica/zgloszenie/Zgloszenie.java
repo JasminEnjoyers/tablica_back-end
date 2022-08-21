@@ -1,12 +1,12 @@
 package com.Tablica.zgloszenie;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table ( name = "zgloszenia" )
 public class Zgloszenie {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_zgloszenia;
     @Column
     private long id_uzytkownika;
@@ -21,8 +21,8 @@ public class Zgloszenie {
     public Zgloszenie() {
     }
 
-    public Zgloszenie(long id_zgloszenia, long id_uzytkownika, long id_ogloszenia, String tekst) {
-        this.id_zgloszenia = id_zgloszenia;
+    public Zgloszenie(long id_uzytkownika, long id_ogloszenia, String tekst) {
+        super();
         this.id_uzytkownika = id_uzytkownika;
         this.id_ogloszenia = id_ogloszenia;
         this.tekst = tekst;

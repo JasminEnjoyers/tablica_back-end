@@ -1,12 +1,12 @@
 package com.Tablica.kategoria;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table ( name = "kategorie" )
 public class Kategoria {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
     private String nazwa;
@@ -17,8 +17,8 @@ public class Kategoria {
     public Kategoria() {
     }
 
-    public Kategoria(long id, String nazwa) {
-        this.id = id;
+    public Kategoria(String nazwa) {
+        super();
         this.nazwa = nazwa;
     }
 

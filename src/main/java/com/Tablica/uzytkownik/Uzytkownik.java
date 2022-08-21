@@ -1,12 +1,12 @@
 package com.Tablica.uzytkownik;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table ( name = "uzytkownicy" )
 public class Uzytkownik {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
     private String email;
@@ -31,8 +31,8 @@ public class Uzytkownik {
     public Uzytkownik() {
     }
 
-    public Uzytkownik(long id, String email, long id_grupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
-        this.id = id;
+    public Uzytkownik(String email, long id_grupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
+        super();
         this.email = email;
         this.id_grupy = id_grupy;
         this.telefon = telefon;

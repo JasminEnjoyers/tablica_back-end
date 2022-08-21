@@ -1,12 +1,12 @@
 package com.Tablica.grupa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table ( name = "grupy" )
 public class Grupa {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
     private String nazwa;
@@ -17,8 +17,8 @@ public class Grupa {
     public Grupa() {
     }
 
-    public Grupa(long id, String nazwa) {
-        this.id = id;
+    public Grupa(String nazwa) {
+        super();
         this.nazwa = nazwa;
     }
 
