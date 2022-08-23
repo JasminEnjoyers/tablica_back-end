@@ -20,4 +20,15 @@ public class UzytkownikService {
 
         return null;
     }
+
+    public Uzytkownik createUser(String login, String password, String email, String phone, String firstName, String lastName){
+        Uzytkownik user = new Uzytkownik(email,2,phone,0,login,firstName,lastName,password);
+
+        try{
+            uzytkownikRepository.save(user);
+            return user;
+        }catch (Exception e){}
+
+        return null;
+    }
 }

@@ -16,13 +16,28 @@ public class UzytkownikController {
     @Autowired
     UzytkownikService uzytkownikService;
 
-    @PostMapping("/")
+    @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public String checkUserDetails(
             @RequestParam String login,
             @RequestParam String password
     ){
         Uzytkownik user = uzytkownikService.finduser(login,password);
+
+        return gson.toJson(user);
+    }
+
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.OK)
+    public String registerUser(
+            @RequestParam String login,
+            @RequestParam String password,
+            @RequestParam String email,
+            @RequestParam String phone,
+            @RequestParam String firstName,
+            @RequestParam String lastName
+    ){
+        Uzytkownik user = uzytkownikService.createUser(login,password,email,phone,firstName,lastName);
 
         return gson.toJson(user);
     }
