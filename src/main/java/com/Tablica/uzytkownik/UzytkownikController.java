@@ -16,6 +16,9 @@ public class UzytkownikController {
     @Autowired
     UzytkownikService uzytkownikService;
 
+    @Autowired
+    UzytkownikRepository uzytkownikRepository;
+
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public String checkUserDetails(
@@ -40,5 +43,41 @@ public class UzytkownikController {
         Uzytkownik user = uzytkownikService.createUser(login,password,email,phone,firstName,lastName);
 
         return gson.toJson(user);
+    }
+
+    @GetMapping("/user/login/{login}")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean checkUserDetails(
+            @PathVariable String login
+    ){
+        Uzytkownik user = uzytkownikRepository.findFirstByNazwa(login);
+        if(user != null){
+            return true;
+        }
+        return false;
+    }
+
+    @GetMapping("/user/email/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean checkEmailDetails(
+            @PathVariable String email
+    ){
+        Uzytkownik user = uzytkownikRepository.findFirstByEmail(email);
+        if(user != null){
+            return true;
+        }
+        return false;
+    }
+
+    @GetMapping("/user/phone/{phone}")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean checkPhoneDetails(
+            @PathVariable String phone
+    ){
+        Uzytkownik user = uzytkownikRepository.findFirstByTelefon(phone);
+        if(user != null){
+            return true;
+        }
+        return false;
     }
 }
