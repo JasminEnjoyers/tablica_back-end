@@ -7,11 +7,11 @@ import javax.persistence.*;
 public class Zgloszenie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_zgloszenia;
+    private long idZgloszenia;
     @Column
-    private long id_uzytkownika;
+    private long idUzytkownika;
     @Column
-    private long id_ogloszenia;
+    private long idOgloszenia;
     @Column
     private String tekst;
 
@@ -21,10 +21,10 @@ public class Zgloszenie {
     public Zgloszenie() {
     }
 
-    public Zgloszenie(long id_uzytkownika, long id_ogloszenia, String tekst) {
+    public Zgloszenie(long idUzytkownika, long idOgloszenia, String tekst) {
         super();
-        this.id_uzytkownika = id_uzytkownika;
-        this.id_ogloszenia = id_ogloszenia;
+        this.idUzytkownika = idUzytkownika;
+        this.idOgloszenia = idOgloszenia;
         this.tekst = tekst;
     }
 
@@ -32,26 +32,26 @@ public class Zgloszenie {
 //GETTERS AND SETTERS
 
     public long getId_zgloszenia() {
-        return id_zgloszenia;
+        return idZgloszenia;
     }
 
-    public void setId_zgloszenia(long id_zgloszenia) {
-        this.id_zgloszenia = id_zgloszenia;
+    public void setId_zgloszenia(long idZgloszenia) {
+        this.idZgloszenia = idZgloszenia;
     }
     public long getId_uzytkownika() {
-        return id_uzytkownika;
+        return idUzytkownika;
     }
 
-    public void setId_uzytkownika(long id_uzytkownika) {
-        this.id_uzytkownika = id_uzytkownika;
+    public void setId_uzytkownika(long idUzytkownika) {
+        this.idUzytkownika = idUzytkownika;
     }
 
     public long getId_ogloszenia() {
-        return id_ogloszenia;
+        return idOgloszenia;
     }
 
-    public void setId_ogloszenia(long id_ogloszenia) {
-        this.id_ogloszenia = id_ogloszenia;
+    public void setId_ogloszenia(long idOgloszenia) {
+        this.idOgloszenia = idOgloszenia;
     }
 
     public String getTekst() {

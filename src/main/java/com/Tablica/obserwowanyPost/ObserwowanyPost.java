@@ -8,10 +8,10 @@ public class ObserwowanyPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
-    private long id_uzytkownika;
-    @Column
-    private long id_ogloszenia;
+    @Column (name = "id_uzytkownika")
+    private long idUzytkownika;
+    @Column (name = "id_ogloszenia")
+    private long idOgloszenia;
 
 
 //CONSTRUCTORS
@@ -19,10 +19,10 @@ public class ObserwowanyPost {
     public ObserwowanyPost() {
     }
 
-    public ObserwowanyPost(long id_uzytkownika, long id_ogloszenia) {
+    public ObserwowanyPost(long idUzytkownika, long idOgloszenia) {
         super();
-        this.id_uzytkownika = id_uzytkownika;
-        this.id_ogloszenia = id_ogloszenia;
+        this.idUzytkownika = idUzytkownika;
+        this.idOgloszenia = idOgloszenia;
     }
 
     //GETTERS AND SETTERS
@@ -36,18 +36,16 @@ public class ObserwowanyPost {
     }
 
     public long getId_uzytkownika() {
-        return id_uzytkownika;
+        return idUzytkownika;
     }
 
-    public void setId_uzytkownika(long id_uzytkownika) {
-        this.id_uzytkownika = id_uzytkownika;
+    public void setId_uzytkownika(long idUzytkownika) {
+        this.idUzytkownika = idUzytkownika;
     }
 
-    public long getId_ogloszenia() {
-        return id_ogloszenia;
-    }
+    public long getId_ogloszenia() {return idOgloszenia;}
 
-    public void setId_ogloszenia(long id_ogloszenia) {
-        this.id_ogloszenia = id_ogloszenia;
+    public void setId_ogloszenia(long idOgloszenia) {
+        this.idOgloszenia = idOgloszenia;
     }
 }

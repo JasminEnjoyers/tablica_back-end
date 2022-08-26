@@ -10,8 +10,8 @@ public class Uzytkownik {
     private long id;
     @Column
     private String email;
-    @Column
-    private long id_grupy;
+    @Column (name = "id_grupy")
+    private long idGrupy;
     @Column
     private String telefon;
     @Column
@@ -31,10 +31,10 @@ public class Uzytkownik {
     public Uzytkownik() {
     }
 
-    public Uzytkownik(String email, long id_grupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
+    public Uzytkownik(String email, long idGrupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
         super();
         this.email = email;
-        this.id_grupy = id_grupy;
+        this.idGrupy = idGrupy;
         this.telefon = telefon;
         this.reputacja = reputacja;
         this.nazwa = nazwa;
@@ -63,11 +63,11 @@ public class Uzytkownik {
     }
 
     public long getId_grupy() {
-        return id_grupy;
+        return idGrupy;
     }
 
     public void setId_grupy(long id_grupy) {
-        this.id_grupy = id_grupy;
+        this.idGrupy = idGrupy;
     }
 
     public String getTelefon() {

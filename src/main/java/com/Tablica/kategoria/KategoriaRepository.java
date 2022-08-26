@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface KategoriaRepository extends JpaRepository<Kategoria,Long> {
-
+    Kategoria findFirstByNazwa(String nazwa);
 }
