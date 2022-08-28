@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.lang.Long.parseLong;
+
 @CrossOrigin(allowCredentials = "true", origins = "/**")
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api/posty")
 public class OgloszenieController {
     private Gson gson = new GsonBuilder().create();
 
@@ -25,20 +27,17 @@ public class OgloszenieController {
     @RequestMapping("posty")
     @ResponseStatus(HttpStatus.OK)
     public List<Ogloszenie> getOgloszenia(
-            @RequestParam(name="kategoria", required = false) String nazwaKategorii,
-            @RequestParam(name="uzytkownik", required = false) String nazwaUzytkownika
+            @RequestParam(name="kategoria", required = false) String idKategorii,
+            @RequestParam(name="uzytkownik", required = false) String idUzytkownika
     ){
-
-        if(nazwaKategorii==null && nazwaUzytkownika==null){
+        if(idKategorii==null && idUzytkownika==null){
             return ogloszenieService.getOgloszenia();
         }
-        if(nazwaKategorii!=null && nazwaUzytkownika==null){
-            long id = (new KategoriaService()).getIdKategoriiByNazwa(nazwaKategorii);
-            return ogloszenieService.getOgloszeniaByKategoria(id);
+        if(idKategorii!=null && idUzytkownika==null){
+            return ogloszenieService.getOgloszeniaByKategoria(parseLong(idKategorii));
         }
-        if(nazwaKategorii==null && nazwaUzytkownika!=null){
-            long id = (new UzytkownikService()).getIdUzytkownikaByNazwa(nazwaUzytkownika);
-            return ogloszenieService.getOgloszeniaByUzytkownik(id);
+        if(idKategorii==null && idUzytkownika!=null){
+            return ogloszenieService.getOgloszeniaByUzytkownik(parseLong(idUzytkownika));
         }
         return null;
     }
