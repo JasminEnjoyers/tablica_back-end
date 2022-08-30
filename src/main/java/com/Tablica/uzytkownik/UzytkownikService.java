@@ -9,6 +9,10 @@ public class UzytkownikService {
     @Autowired
     UzytkownikRepository uzytkownikRepository;
 
+    public long getIdUzytkownikaByNazwa(String nazwa){
+        return uzytkownikRepository.findFirstByNazwa(nazwa).getId();
+    }
+
     public Uzytkownik finduser(String login, String password){
         Uzytkownik user = uzytkownikRepository.findFirstByNazwa(login);
 

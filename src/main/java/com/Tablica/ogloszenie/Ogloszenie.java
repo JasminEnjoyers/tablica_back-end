@@ -10,10 +10,10 @@ public class Ogloszenie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
-    private long id_autora;
-    @Column
-    private long id_kategorii;
+    @Column (name = "id_autora")
+    private long idAutora;
+    @Column (name = "id_kategorii")
+    private long idKategorii;
     @Column
     private long ocena;
     @Column
@@ -29,10 +29,10 @@ public class Ogloszenie {
     public Ogloszenie() {
     }
 
-    public Ogloszenie(long id_autora, long id_kategorii, long ocena, String tytul, String tekst, Date data) {
+    public Ogloszenie(long idAutora, long idKategorii, long ocena, String tytul, String tekst, Date data) {
         super();
-        this.id_autora = id_autora;
-        this.id_kategorii = id_kategorii;
+        this.idAutora = idAutora;
+        this.idKategorii = idKategorii;
         this.ocena = ocena;
         this.tytul = tytul;
         this.tekst = tekst;
@@ -50,19 +50,19 @@ public class Ogloszenie {
     }
 
     public long getId_autora() {
-        return id_autora;
+        return idAutora;
     }
 
     public void setId_autora(long id_autora) {
-        this.id_autora = id_autora;
+        this.idAutora = id_autora;
     }
 
     public long getId_kategorii() {
-        return id_kategorii;
+        return idKategorii;
     }
 
-    public void setId_kategorii(long id_kategorii) {
-        this.id_kategorii = id_kategorii;
+    public void setId_kategorii(long idKategorii) {
+        this.idKategorii = idKategorii;
     }
 
     public long getOcena() {
