@@ -7,8 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpServerErrorException;
 
-import java.net.http.HttpResponse;
-import java.util.Optional;
+import static java.lang.Long.parseLong;
 
 
 @CrossOrigin(allowCredentials = "true", origins = "/**")
@@ -163,5 +162,17 @@ public class UzytkownikController {
         }catch (Exception e){
             throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("api/uzytkownicy/uzytkownik")
+    @ResponseStatus(HttpStatus.OK)
+    public Uzytkownik findFirstById(
+            @RequestParam String id
+    ){
+        Uzytkownik user = uzytkownikRepository.findFirstById(parseLong(id));
+        if(user != null) {
+            return user;
+        }
+        else return new Uzytkownik();
     }
 }
