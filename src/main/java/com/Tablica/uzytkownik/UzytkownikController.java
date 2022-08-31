@@ -82,7 +82,6 @@ public class UzytkownikController {
         if(user != null){
             return true;
         }
-        System.out.println("siema");
         return false;
     }
 
