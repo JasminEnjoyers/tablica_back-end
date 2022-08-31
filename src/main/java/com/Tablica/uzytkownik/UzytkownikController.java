@@ -22,6 +22,9 @@ public class UzytkownikController {
     @Autowired
     UzytkownikRepository uzytkownikRepository;
 
+    @Autowired
+    UzytkownikAssembler uzytkownikAssembler;
+
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public String checkUserDetails(
@@ -30,7 +33,7 @@ public class UzytkownikController {
     ){
         Uzytkownik user = uzytkownikService.finduser(login,password);
 
-        return gson.toJson(user);
+        return gson.toJson(uzytkownikAssembler.toUzytkownikDto(user));
     }
 
     @PostMapping("/register")
@@ -45,7 +48,7 @@ public class UzytkownikController {
     ){
         Uzytkownik user = uzytkownikService.createUser(login,password,email,phone,firstName,lastName);
 
-        return gson.toJson(user);
+        return gson.toJson(uzytkownikAssembler.toUzytkownikDto(user));
     }
 
     @GetMapping("/user/login/{login}")
@@ -164,15 +167,43 @@ public class UzytkownikController {
         }
     }
 
+    @PutMapping("/user/password")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean PasswordUpdate(
+            @RequestParam Long userId,
+            @RequestParam String newPassword
+    ){
+        Uzytkownik user = uzytkownikRepository.findById(userId).orElse(null);
+        user.setHaslo(newPassword);
+        try {
+            uzytkownikRepository.save(user);
+            return false;
+        }catch (Exception e){
+            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/user/password")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean CheckPassword(
+            @RequestParam Long userId,
+            @RequestParam String password
+    ){
+        Uzytkownik user = uzytkownikRepository.findById(userId).orElse(null);
+
+        if(user.getHaslo().equals(password)) return true;
+        else return false;
+    }
+
     @GetMapping("api/uzytkownicy/uzytkownik")
     @ResponseStatus(HttpStatus.OK)
-    public Uzytkownik findFirstById(
+    public UzytkownikDto findFirstById(
             @RequestParam String id
     ){
         Uzytkownik user = uzytkownikRepository.findFirstById(parseLong(id));
         if(user != null) {
-            return user;
+            return uzytkownikAssembler.toUzytkownikDto(user);
         }
-        else return new Uzytkownik();
+        else return uzytkownikAssembler.toUzytkownikDto(new Uzytkownik());
     }
 }
