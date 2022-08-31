@@ -24,7 +24,7 @@ public class OgloszenieController {
     OgloszenieService ogloszenieService;
 
 
-    @RequestMapping("posty")
+    @GetMapping("posty")
     @ResponseStatus(HttpStatus.OK)
     public List<Ogloszenie> getOgloszenia(
             @RequestParam(name="kategoria", required = false) String idKategorii,

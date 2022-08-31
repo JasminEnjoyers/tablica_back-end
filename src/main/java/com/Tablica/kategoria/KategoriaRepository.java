@@ -9,5 +9,6 @@ import java.util.List;
 public interface KategoriaRepository extends JpaRepository<Kategoria,Long> {
     List<Kategoria> findAll();
 
+    Kategoria findFirstById(Long id);
     Kategoria findFirstByNazwa(String nazwa);
 }
