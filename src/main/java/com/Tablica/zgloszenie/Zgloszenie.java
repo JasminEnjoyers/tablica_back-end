@@ -1,5 +1,8 @@
 package com.Tablica.zgloszenie;
 
+import com.Tablica.ogloszenie.Ogloszenie;
+import com.Tablica.uzytkownik.Uzytkownik;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,10 +11,15 @@ public class Zgloszenie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idZgloszenia;
-    @Column
-    private long idUzytkownika;
-    @Column
-    private long idOgloszenia;
+
+    @ManyToOne
+    @JoinColumn(name = "id_uzytkownika")
+    private Uzytkownik uzytkownik;
+
+    @ManyToOne
+    @JoinColumn(name = "id_ogloszenia")
+    private Ogloszenie ogloszenie;
+
     @Column
     private String tekst;
 
@@ -21,37 +29,37 @@ public class Zgloszenie {
     public Zgloszenie() {
     }
 
-    public Zgloszenie(long idUzytkownika, long idOgloszenia, String tekst) {
+    public Zgloszenie(Uzytkownik uzytkownik, Ogloszenie ogloszenie, String tekst) {
         super();
-        this.idUzytkownika = idUzytkownika;
-        this.idOgloszenia = idOgloszenia;
+        this.uzytkownik = uzytkownik;
+        this.ogloszenie = ogloszenie;
         this.tekst = tekst;
     }
 
+    //GETTERS AND SETTERS
 
-//GETTERS AND SETTERS
-
-    public long getId_zgloszenia() {
+    public long getIdZgloszenia() {
         return idZgloszenia;
     }
 
-    public void setId_zgloszenia(long idZgloszenia) {
+    public void setIdZgloszenia(long idZgloszenia) {
         this.idZgloszenia = idZgloszenia;
     }
-    public long getId_uzytkownika() {
-        return idUzytkownika;
+
+    public Uzytkownik getUzytkownik() {
+        return uzytkownik;
     }
 
-    public void setId_uzytkownika(long idUzytkownika) {
-        this.idUzytkownika = idUzytkownika;
+    public void setUzytkownik(Uzytkownik uzytkownik) {
+        this.uzytkownik = uzytkownik;
     }
 
-    public long getId_ogloszenia() {
-        return idOgloszenia;
+    public Ogloszenie getOgloszenie() {
+        return ogloszenie;
     }
 
-    public void setId_ogloszenia(long idOgloszenia) {
-        this.idOgloszenia = idOgloszenia;
+    public void setOgloszenie(Ogloszenie ogloszenie) {
+        this.ogloszenie = ogloszenie;
     }
 
     public String getTekst() {

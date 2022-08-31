@@ -1,5 +1,8 @@
 package com.Tablica.obserwowanyPost;
 
+import com.Tablica.ogloszenie.Ogloszenie;
+import com.Tablica.uzytkownik.Uzytkownik;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,10 +11,14 @@ public class ObserwowanyPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column (name = "id_uzytkownika")
-    private long idUzytkownika;
-    @Column (name = "id_ogloszenia")
-    private long idOgloszenia;
+
+    @ManyToOne
+    @JoinColumn(name = "id_uzytkownika")
+    private Uzytkownik uzytkownik;
+
+    @ManyToOne
+    @JoinColumn(name = "id_ogloszenia")
+    private Ogloszenie ogloszenie;
 
 
 //CONSTRUCTORS
@@ -19,10 +26,10 @@ public class ObserwowanyPost {
     public ObserwowanyPost() {
     }
 
-    public ObserwowanyPost(long idUzytkownika, long idOgloszenia) {
+    public ObserwowanyPost(long id, com.Tablica.uzytkownik.Uzytkownik uzytkownik, com.Tablica.ogloszenie.Ogloszenie ogloszenie) {
         super();
-        this.idUzytkownika = idUzytkownika;
-        this.idOgloszenia = idOgloszenia;
+        this.uzytkownik = uzytkownik;
+        this.ogloszenie = ogloszenie;
     }
 
     //GETTERS AND SETTERS
@@ -35,17 +42,19 @@ public class ObserwowanyPost {
         this.id = id;
     }
 
-    public long getId_uzytkownika() {
-        return idUzytkownika;
+    public com.Tablica.uzytkownik.Uzytkownik getUzytkownik() {
+        return uzytkownik;
     }
 
-    public void setId_uzytkownika(long idUzytkownika) {
-        this.idUzytkownika = idUzytkownika;
+    public void setUzytkownik(com.Tablica.uzytkownik.Uzytkownik uzytkownik) {
+        uzytkownik = uzytkownik;
     }
 
-    public long getId_ogloszenia() {return idOgloszenia;}
+    public com.Tablica.ogloszenie.Ogloszenie getOgloszenie() {
+        return ogloszenie;
+    }
 
-    public void setId_ogloszenia(long idOgloszenia) {
-        this.idOgloszenia = idOgloszenia;
+    public void setOgloszenie(com.Tablica.ogloszenie.Ogloszenie ogloszenie) {
+        ogloszenie = ogloszenie;
     }
 }

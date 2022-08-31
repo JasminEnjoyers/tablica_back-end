@@ -1,5 +1,7 @@
 package com.Tablica.ogloszenie;
 
+import com.Tablica.kategoria.KategoriaRepository;
+import com.Tablica.uzytkownik.UzytkownikRepository;
 import com.Tablica.uzytkownik.UzytkownikService;
 import com.Tablica.kategoria.KategoriaService;
 
@@ -23,21 +25,27 @@ public class OgloszenieController {
     @Autowired
     OgloszenieService ogloszenieService;
 
+    @Autowired
+    UzytkownikRepository uzytkownikRepository;
+
+    @Autowired
+    KategoriaRepository kategoriaRepository;
+
 
     @GetMapping("posty")
     @ResponseStatus(HttpStatus.OK)
     public List<Ogloszenie> getOgloszenia(
-            @RequestParam(name="kategoria", required = false) String idKategorii,
-            @RequestParam(name="uzytkownik", required = false) String idUzytkownika
-    ){
-        if(idKategorii==null && idUzytkownika==null){
+            @RequestParam(name = "kategoria", required = false) String nazwaKategorii,
+            @RequestParam(name = "uzytkownik", required = false) String nazwaUzytkownika
+    ) {
+        if (nazwaKategorii == null && nazwaUzytkownika == null) {
             return ogloszenieService.getOgloszenia();
         }
-        if(idKategorii!=null && idUzytkownika==null){
-            return ogloszenieService.getOgloszeniaByKategoria(parseLong(idKategorii));
+        if (nazwaKategorii != null && nazwaUzytkownika == null) {
+            return ogloszenieService.getOgloszeniaByKategoria(kategoriaRepository.findFirstByNazwa(nazwaKategorii));
         }
-        if(idKategorii==null && idUzytkownika!=null){
-            return ogloszenieService.getOgloszeniaByUzytkownik(parseLong(idUzytkownika));
+        if (nazwaKategorii == null && nazwaUzytkownika != null) {
+            return ogloszenieService.getOgloszeniaByUzytkownik(uzytkownikRepository.findFirstByNazwa(nazwaUzytkownika));
         }
         return null;
     }

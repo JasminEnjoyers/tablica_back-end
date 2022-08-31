@@ -1,4 +1,4 @@
-package com.Tablica.obserwowanePost;
+package com.Tablica.obserwowanyPost;
 
 import org.springframework.stereotype.Service;
 
