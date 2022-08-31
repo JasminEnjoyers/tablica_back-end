@@ -68,11 +68,11 @@ public class Ogloszenie {
         this.autor = autor;
     }
 
-    public Kategoria getKategorii() {
+    public Kategoria getKategoria() {
         return kategoria;
     }
 
-    public void setKategorii(Kategoria kategoria) {
+    public void setKategoria(Kategoria kategoria) {
         this.kategoria = kategoria;
     }
 

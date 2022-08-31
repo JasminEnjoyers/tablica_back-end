@@ -139,4 +139,9 @@ public class Uzytkownik {
     public void setHaslo(String haslo) {
         this.haslo = haslo;
     }
+
+
+    public long getIdGrupy(){
+        return this.getGrupa().getId();
+    }
 }
