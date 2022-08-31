@@ -68,6 +68,7 @@ public class Ogloszenie {
         this.autor = autor;
     }
 
+
     public Kategoria getKategoria() {
         return kategoria;
     }
