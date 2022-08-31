@@ -1,5 +1,8 @@
 package com.Tablica.ogloszenie;
 
+import com.Tablica.kategoria.Kategoria;
+import com.Tablica.uzytkownik.Uzytkownik;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -10,16 +13,24 @@ public class Ogloszenie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column (name = "id_autora")
-    private long idAutora;
-    @Column (name = "id_kategorii")
-    private long idKategorii;
+
+    @ManyToOne
+    @JoinColumn (name = "id_autora")
+    private Uzytkownik autor;
+
+    @ManyToOne
+    @JoinColumn (name = "id_kategorii")
+    private Kategoria kategoria;
+
     @Column
     private long ocena;
+
     @Column
     private String tytul;
+
     @Column
     private String tekst;
+
     @Column (name = "data_dodania")
     private Date data;
 
@@ -29,10 +40,10 @@ public class Ogloszenie {
     public Ogloszenie() {
     }
 
-    public Ogloszenie(long idAutora, long idKategorii, long ocena, String tytul, String tekst, Date data) {
+    public Ogloszenie(Uzytkownik autor, Kategoria kategoria, long ocena, String tytul, String tekst, Date data) {
         super();
-        this.idAutora = idAutora;
-        this.idKategorii = idKategorii;
+        this.autor = autor;
+        this.kategoria = kategoria;
         this.ocena = ocena;
         this.tytul = tytul;
         this.tekst = tekst;
@@ -49,20 +60,20 @@ public class Ogloszenie {
         this.id = id;
     }
 
-    public long getId_autora() {
-        return idAutora;
+    public Uzytkownik getAutor() {
+        return autor;
     }
 
-    public void setId_autora(long id_autora) {
-        this.idAutora = id_autora;
+    public void setAutor(Uzytkownik autor) {
+        this.autor = autor;
     }
 
-    public long getId_kategorii() {
-        return idKategorii;
+    public Kategoria getKategorii() {
+        return kategoria;
     }
 
-    public void setId_kategorii(long idKategorii) {
-        this.idKategorii = idKategorii;
+    public void setKategorii(Kategoria kategoria) {
+        this.kategoria = kategoria;
     }
 
     public long getOcena() {

@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GrupaRepository extends JpaRepository<Grupa,Long> {
     Grupa findAllById(Long id);
+
+    Grupa findFirstById(Long id);
+    Grupa findFirstByNazwa(String nazwa);
 }

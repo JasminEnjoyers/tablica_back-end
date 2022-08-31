@@ -1,5 +1,7 @@
 package com.Tablica.ogloszenie;
 
+import com.Tablica.kategoria.Kategoria;
+import com.Tablica.uzytkownik.Uzytkownik;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -14,12 +16,12 @@ public class OgloszenieService {
         return ogloszenieRepository.findAll();
     }
 
-    public List<Ogloszenie> getOgloszeniaByKategoria(long id_kategorii){
-        return ogloszenieRepository.findAllByIdKategorii(id_kategorii);
+    public List<Ogloszenie> getOgloszeniaByKategoria(Kategoria kategoria){
+        return ogloszenieRepository.findAllByKategoria(kategoria);
     }
 
-    public List<Ogloszenie> getOgloszeniaByUzytkownik(long id_autora){
-        return ogloszenieRepository.findAllByIdAutora(id_autora);
+    public List<Ogloszenie> getOgloszeniaByUzytkownik(Uzytkownik autor){
+        return ogloszenieRepository.findAllByAutor(autor);
     }
 
 }

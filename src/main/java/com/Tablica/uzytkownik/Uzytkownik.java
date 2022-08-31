@@ -1,6 +1,12 @@
 package com.Tablica.uzytkownik;
 
+import com.Tablica.grupa.Grupa;
+import com.Tablica.obserwowanyPost.ObserwowanyPost;
+import com.Tablica.ogloszenie.Ogloszenie;
+import com.Tablica.zgloszenie.Zgloszenie;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table ( name = "uzytkownicy" )
@@ -8,33 +14,50 @@ public class Uzytkownik {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column
     private String email;
-    @Column (name = "id_grupy")
-    private long idGrupy;
+
+    @ManyToOne
+    @JoinColumn (name = "id_grupy")
+    private Grupa Grupa;
+
     @Column
     private String telefon;
+
     @Column
     private long reputacja;
+
     @Column
     private String nazwa;
+
     @Column
     private String imie;
+
     @Column
     private String nazwisko;
+
     @Column
     private String haslo;
 
+    @OneToMany(mappedBy = "autor")
+    List<Ogloszenie> ogloszenia;
+
+    @OneToMany(mappedBy = "uzytkownik")
+    List<Zgloszenie> zgloszenia;
+
+    @OneToMany(mappedBy = "uzytkownik")
+    List<ObserwowanyPost> obserwowane;
 
 //CONSTRUCTORS
 
     public Uzytkownik() {
     }
 
-    public Uzytkownik(String email, long idGrupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
+    public Uzytkownik(String email, com.Tablica.grupa.Grupa grupa, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
         super();
         this.email = email;
-        this.idGrupy = idGrupy;
+        this.Grupa = grupa;
         this.telefon = telefon;
         this.reputacja = reputacja;
         this.nazwa = nazwa;
@@ -43,8 +66,7 @@ public class Uzytkownik {
         this.haslo = haslo;
     }
 
-
-//GETTERS AND SETTERS
+    //GETTERS AND SETTERS
 
     public long getId() {
         return id;
@@ -62,12 +84,12 @@ public class Uzytkownik {
         this.email = email;
     }
 
-    public long getId_grupy() {
-        return idGrupy;
+    public com.Tablica.grupa.Grupa getGrupa() {
+        return Grupa;
     }
 
-    public void setId_grupy(long id_grupy) {
-        this.idGrupy = idGrupy;
+    public void setGrupa(com.Tablica.grupa.Grupa grupa) {
+        Grupa = grupa;
     }
 
     public String getTelefon() {
