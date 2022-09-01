@@ -9,7 +9,7 @@ public class UzytkownikAssembler {
         if(user != null) {
             UzytkownikDto dto = new UzytkownikDto(
                     user.getEmail(),
-                    user.getGrupa(),
+                    user.getGrupa().getId(),
                     user.getTelefon(),
                     user.getReputacja(),
                     user.getNazwa(),

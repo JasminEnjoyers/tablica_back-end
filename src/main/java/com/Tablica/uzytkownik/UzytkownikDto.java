@@ -6,7 +6,7 @@ import com.Tablica.grupa.Grupa;
 public class UzytkownikDto {
     private long id;
     private String email;
-    private Grupa grupa;
+    private long grupa;
     private String telefon;
     private long reputacja;
     private String nazwa;
@@ -19,7 +19,7 @@ public class UzytkownikDto {
     public UzytkownikDto() {
     }
 
-    public UzytkownikDto(String email, Grupa grupa, String telefon, long reputacja, String nazwa, String imie, String nazwisko, long id) {
+    public UzytkownikDto(String email, long grupa, String telefon, long reputacja, String nazwa, String imie, String nazwisko, long id) {
         super();
         this.email = email;
         this.grupa = grupa;
