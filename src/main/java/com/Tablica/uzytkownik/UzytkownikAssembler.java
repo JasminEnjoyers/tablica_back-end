@@ -8,7 +8,7 @@ public class UzytkownikAssembler {
     UzytkownikDto toUzytkownikDto(Uzytkownik user){
         UzytkownikDto dto = new UzytkownikDto(
                 user.getEmail(),
-                user.getGrupa().getId(),
+                user.getGrupa(),
                 user.getTelefon(),
                 user.getReputacja(),
                 user.getNazwa(),

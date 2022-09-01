@@ -1,10 +1,12 @@
 package com.Tablica.uzytkownik;
 
 
+import com.Tablica.grupa.Grupa;
+
 public class UzytkownikDto {
     private long id;
     private String email;
-    private long idGrupy;
+    private Grupa grupa;
     private String telefon;
     private long reputacja;
     private String nazwa;
@@ -14,13 +16,13 @@ public class UzytkownikDto {
 
 //CONSTRUCTORS
 
-    public UzytkownikDto(String email, String nazwa, String telefon, long reputacja, String userNazwa, String imie, String nazwisko, long id) {
+    public UzytkownikDto() {
     }
 
-    public UzytkownikDto(String email, long idGrupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, long id) {
+    public UzytkownikDto(String email, Grupa grupa, String telefon, long reputacja, String nazwa, String imie, String nazwisko, long id) {
         super();
         this.email = email;
-        this.idGrupy = idGrupy;
+        this.grupa = grupa;
         this.telefon = telefon;
         this.reputacja = reputacja;
         this.nazwa = nazwa;
