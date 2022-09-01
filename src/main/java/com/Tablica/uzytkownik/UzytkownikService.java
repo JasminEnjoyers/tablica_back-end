@@ -22,7 +22,7 @@ public class UzytkownikService {
     public Uzytkownik finduser(String login, String password){
         Uzytkownik user = uzytkownikRepository.findFirstByNazwa(login);
 
-        try {
+        if(user != null) try {
             if (user.getHaslo().equals(password)) {
                 return user;
             }

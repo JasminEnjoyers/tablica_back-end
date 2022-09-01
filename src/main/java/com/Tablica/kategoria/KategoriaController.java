@@ -40,7 +40,7 @@ public class KategoriaController {
     }
 
 
-    @GetMapping("kategoria")
+    /*@GetMapping("kategoria")
     @ResponseStatus(HttpStatus.OK)
     public Kategoria findFirstById(
             @RequestParam String id
@@ -50,5 +50,5 @@ public class KategoriaController {
             return category;
         }
         else return new Kategoria();
-    }
+    }*/
 }

@@ -195,7 +195,7 @@ public class UzytkownikController {
         else return false;
     }
 
-    @GetMapping("api/uzytkownicy/uzytkownik")
+    /*@GetMapping("api/uzytkownicy/uzytkownik")
     @ResponseStatus(HttpStatus.OK)
     public UzytkownikDto findFirstById(
             @RequestParam String id
@@ -205,5 +205,5 @@ public class UzytkownikController {
             return uzytkownikAssembler.toUzytkownikDto(user);
         }
         else return null;
-    }
+    }*/
 }

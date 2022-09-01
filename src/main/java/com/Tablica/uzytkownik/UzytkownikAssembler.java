@@ -6,16 +6,19 @@ import org.springframework.stereotype.Component;
 public class UzytkownikAssembler {
 
     UzytkownikDto toUzytkownikDto(Uzytkownik user){
-        UzytkownikDto dto = new UzytkownikDto(
-                user.getEmail(),
-                user.getGrupa(),
-                user.getTelefon(),
-                user.getReputacja(),
-                user.getNazwa(),
-                user.getImie(),
-                user.getNazwisko(),
-                user.getId()
-        );
-        return dto;
+        if(user != null) {
+            UzytkownikDto dto = new UzytkownikDto(
+                    user.getEmail(),
+                    user.getGrupa(),
+                    user.getTelefon(),
+                    user.getReputacja(),
+                    user.getNazwa(),
+                    user.getImie(),
+                    user.getNazwisko(),
+                    user.getId()
+            );
+            return dto;
+        }
+        else return null;
     }
 }
