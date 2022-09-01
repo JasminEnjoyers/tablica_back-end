@@ -204,6 +204,6 @@ public class UzytkownikController {
         if(user != null) {
             return uzytkownikAssembler.toUzytkownikDto(user);
         }
-        else return uzytkownikAssembler.toUzytkownikDto(new Uzytkownik());
+        else return null;
     }
 }

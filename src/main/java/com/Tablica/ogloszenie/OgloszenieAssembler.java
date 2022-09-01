@@ -5,15 +5,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class OgloszenieAssembler {
 
-    OgloszenieDto toUzytkownikDto(Ogloszenie post){
+    OgloszenieDto toOgloszenieDto(Ogloszenie post){
         OgloszenieDto dto = new OgloszenieDto(
+                post.getId(),
                 post.getTytul(),
                 post.getTekst(),
-                post.getAutor(),
+                post.getAutor().getNazwa(),
                 post.getData(),
-                post.getKategoria(),
                 post.getOcena(),
-                post.getId()
+                post.getKategoria().getNazwa()
+
         );
         return dto;
     }

@@ -14,7 +14,7 @@ public class UzytkownikDto {
 
 //CONSTRUCTORS
 
-    public UzytkownikDto() {
+    public UzytkownikDto(String email, String nazwa, String telefon, long reputacja, String userNazwa, String imie, String nazwisko, long id) {
     }
 
     public UzytkownikDto(String email, long idGrupy, String telefon, long reputacja, String nazwa, String imie, String nazwisko, long id) {

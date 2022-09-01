@@ -1,9 +1,8 @@
 package com.Tablica.ogloszenie;
 
-import com.Tablica.kategoria.KategoriaRepository;
+import com.Tablica.kategoria.Kategoria;
+import com.Tablica.kategoria.KategoriaDto;
 import com.Tablica.uzytkownik.UzytkownikRepository;
-import com.Tablica.uzytkownik.UzytkownikService;
-import com.Tablica.kategoria.KategoriaService;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Long.parseLong;
+
 
 @CrossOrigin(allowCredentials = "true", origins = "/**")
 @RestController
@@ -26,27 +26,29 @@ public class OgloszenieController {
     OgloszenieService ogloszenieService;
 
     @Autowired
-    UzytkownikRepository uzytkownikRepository;
+    OgloszenieRepository ogloszenieRepository;
 
     @Autowired
-    KategoriaRepository kategoriaRepository;
+    OgloszenieAssembler ogloszenieAssembler;
+
+    @Autowired
+    UzytkownikRepository uzytkownikRepository;
 
 
     @GetMapping("posty")
     @ResponseStatus(HttpStatus.OK)
-    public List<Ogloszenie> getOgloszenia(
-            @RequestParam(name = "kategoria", required = false) String nazwaKategorii,
-            @RequestParam(name = "uzytkownik", required = false) String nazwaUzytkownika
-    ) {
-        if (nazwaKategorii == null && nazwaUzytkownika == null) {
-            return ogloszenieService.getOgloszenia();
+    public String getOgloszeniaByKategoria(
+            @RequestParam(name = "kategoria", required = false) String nazwaKategorii
+    ){
+        List<Ogloszenie> ogloszenia;
+        if (nazwaKategorii == null) {
+            ogloszenia = ogloszenieRepository.findAll();
+        } else {
+            ogloszenia = ogloszenieService.getOgloszeniaByKategoria(nazwaKategorii);
         }
-        if (nazwaKategorii != null && nazwaUzytkownika == null) {
-            return ogloszenieService.getOgloszeniaByKategoria(kategoriaRepository.findFirstByNazwa(nazwaKategorii));
-        }
-        if (nazwaKategorii == null && nazwaUzytkownika != null) {
-            return ogloszenieService.getOgloszeniaByUzytkownik(uzytkownikRepository.findFirstByNazwa(nazwaUzytkownika));
-        }
-        return null;
+        List<OgloszenieDto> dto = new ArrayList<>();
+        ogloszenia.forEach(ogloszenie -> dto.add(ogloszenieAssembler.toOgloszenieDto(ogloszenie)));
+        return gson.toJson(dto);
     }
+
 }

@@ -140,8 +140,4 @@ public class Uzytkownik {
         this.haslo = haslo;
     }
 
-
-    public long getIdGrupy(){
-        return this.getGrupa().getId();
-    }
 }

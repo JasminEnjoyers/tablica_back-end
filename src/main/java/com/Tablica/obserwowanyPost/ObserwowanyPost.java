@@ -26,7 +26,7 @@ public class ObserwowanyPost {
     public ObserwowanyPost() {
     }
 
-    public ObserwowanyPost(long id, com.Tablica.uzytkownik.Uzytkownik uzytkownik, com.Tablica.ogloszenie.Ogloszenie ogloszenie) {
+    public ObserwowanyPost(Uzytkownik uzytkownik, com.Tablica.ogloszenie.Ogloszenie ogloszenie) {
         super();
         this.uzytkownik = uzytkownik;
         this.ogloszenie = ogloszenie;
@@ -42,19 +42,19 @@ public class ObserwowanyPost {
         this.id = id;
     }
 
-    public com.Tablica.uzytkownik.Uzytkownik getUzytkownik() {
+    public Uzytkownik getUzytkownik() {
         return uzytkownik;
     }
 
-    public void setUzytkownik(com.Tablica.uzytkownik.Uzytkownik uzytkownik) {
-        uzytkownik = uzytkownik;
+    public void setUzytkownik(Uzytkownik uzytkownik) {
+        this.uzytkownik = uzytkownik;
     }
 
-    public com.Tablica.ogloszenie.Ogloszenie getOgloszenie() {
+    public Ogloszenie getOgloszenie() {
         return ogloszenie;
     }
 
-    public void setOgloszenie(com.Tablica.ogloszenie.Ogloszenie ogloszenie) {
-        ogloszenie = ogloszenie;
+    public void setOgloszenie(Ogloszenie ogloszenie) {
+        this.ogloszenie = ogloszenie;
     }
 }
