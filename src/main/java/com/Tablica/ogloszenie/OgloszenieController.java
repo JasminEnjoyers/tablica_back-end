@@ -19,7 +19,6 @@ import java.util.List;
 
 @CrossOrigin(allowCredentials = "true", origins = "/**")
 @RestController
-@RequestMapping("api/posty")
 public class OgloszenieController {
     private Gson gson = new GsonBuilder().create();
 
@@ -36,7 +35,7 @@ public class OgloszenieController {
     UzytkownikRepository uzytkownikRepository;
 
 
-    @GetMapping("posty")
+    @GetMapping("/posty")
     @ResponseStatus(HttpStatus.OK)
     public String getOgloszeniaByKategoria(
             @RequestParam(name = "kategoria", required = false) String nazwaKategorii
@@ -52,13 +51,13 @@ public class OgloszenieController {
         return gson.toJson(dto);
     }
 
-    @PostMapping("posty")
+    @PostMapping("/posty/nowy/{autor}/{kategoria}/{tytul}/{tekst}")
     @ResponseStatus(HttpStatus.OK)
     public String registerUser(
-            @RequestParam String autor,
-            @RequestParam String kategoria,
-            @RequestParam String tytul,
-            @RequestParam String tekst
+            @PathVariable(name = "autor") String autor,
+            @PathVariable(name = "kategoria") String kategoria,
+            @PathVariable(name = "tytul") String tytul,
+            @PathVariable(name = "tekst") String tekst
     ){
         Ogloszenie post = ogloszenieService.createPost(autor, kategoria, tytul, tekst);
 

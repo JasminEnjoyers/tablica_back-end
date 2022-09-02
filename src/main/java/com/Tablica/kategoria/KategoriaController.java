@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Long.parseLong;
 
 @CrossOrigin(allowCredentials = "true", origins = "/**")
 @RestController
@@ -28,7 +27,7 @@ public class KategoriaController {
     KategoriaAssembler kategoriaAssembler;
 
 
-    @GetMapping("api/kategorie/kategorie")
+    @GetMapping("/kategorie")
     @ResponseStatus(HttpStatus.OK)
     public String getKategorie(){
         List<Kategoria> kategorie = kategoriaRepository.findAll();
@@ -38,7 +37,7 @@ public class KategoriaController {
         return gson.toJson(dto);
     }
 
-    @GetMapping("api/kategorie/nazwa/{nazwa}")
+    @GetMapping("/kategorie/nazwa/{nazwa}")
     @ResponseStatus(HttpStatus.OK)
     public boolean checkKategoriaDetails(
             @PathVariable String nazwa
