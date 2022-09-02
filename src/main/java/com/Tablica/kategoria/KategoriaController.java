@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Long.parseLong;
 
 @CrossOrigin(allowCredentials = "true", origins = "/**")
 @RestController
-@RequestMapping("api/kategorie")
 public class KategoriaController {
     private Gson gson = new GsonBuilder().create();
 
@@ -29,7 +27,7 @@ public class KategoriaController {
     KategoriaAssembler kategoriaAssembler;
 
 
-    @GetMapping("kategorie")
+    @GetMapping("/kategorie")
     @ResponseStatus(HttpStatus.OK)
     public String getKategorie(){
         List<Kategoria> kategorie = kategoriaRepository.findAll();
@@ -38,7 +36,19 @@ public class KategoriaController {
 
         return gson.toJson(dto);
     }
-    
+
+    @GetMapping("/kategorie/nazwa/{nazwa}")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean checkKategoriaDetails(
+            @PathVariable String nazwa
+    ){
+        Kategoria kategoria = kategoriaRepository.findFirstByNazwa(nazwa);
+        if(kategoria != null){
+            return true;
+        }
+        return false;
+    }
+
     /*@GetMapping("kategoria")
     @ResponseStatus(HttpStatus.OK)
     public Kategoria findFirstById(
