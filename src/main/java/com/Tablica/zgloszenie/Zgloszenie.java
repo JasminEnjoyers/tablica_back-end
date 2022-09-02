@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Zgloszenie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idZgloszenia;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "id_uzytkownika")
@@ -39,11 +39,11 @@ public class Zgloszenie {
     //GETTERS AND SETTERS
 
     public long getIdZgloszenia() {
-        return idZgloszenia;
+        return id;
     }
 
     public void setIdZgloszenia(long idZgloszenia) {
-        this.idZgloszenia = idZgloszenia;
+        this.id = idZgloszenia;
     }
 
     public Uzytkownik getUzytkownik() {
