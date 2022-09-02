@@ -11,10 +11,9 @@ public class OgloszenieAssembler {
                 post.getTytul(),
                 post.getTekst(),
                 post.getAutor().getNazwa(),
-                post.getData(),
+                post.getData().toString(),
                 post.getOcena(),
                 post.getKategoria().getNazwa()
-
         );
         return dto;
     }

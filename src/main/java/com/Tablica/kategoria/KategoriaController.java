@@ -38,8 +38,7 @@ public class KategoriaController {
 
         return gson.toJson(dto);
     }
-
-
+    
     /*@GetMapping("kategoria")
     @ResponseStatus(HttpStatus.OK)
     public Kategoria findFirstById(

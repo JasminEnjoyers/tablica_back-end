@@ -9,7 +9,7 @@ public class OgloszenieDto {
     private String tekst;
     private String autor;
     private long ocena;
-    private Date data;
+    private String data;
     private String kategoria;
 
 
@@ -18,7 +18,7 @@ public class OgloszenieDto {
     public OgloszenieDto() {
     }
 
-    public OgloszenieDto(long id, String tytul, String tekst, String autor, Date data, long ocena,  String kategoria) {
+    public OgloszenieDto(long id, String tytul, String tekst, String autor, String data, long ocena,  String kategoria) {
         this.id = id;
         this.tytul = tytul;
         this.tekst = tekst;
