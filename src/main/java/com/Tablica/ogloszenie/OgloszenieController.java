@@ -2,6 +2,7 @@ package com.Tablica.ogloszenie;
 
 import com.Tablica.kategoria.Kategoria;
 import com.Tablica.kategoria.KategoriaDto;
+import com.Tablica.uzytkownik.Uzytkownik;
 import com.Tablica.uzytkownik.UzytkownikRepository;
 
 import com.google.gson.Gson;
@@ -49,6 +50,19 @@ public class OgloszenieController {
         List<OgloszenieDto> dto = new ArrayList<>();
         ogloszenia.forEach(ogloszenie -> dto.add(ogloszenieAssembler.toOgloszenieDto(ogloszenie)));
         return gson.toJson(dto);
+    }
+
+    @PostMapping("posty")
+    @ResponseStatus(HttpStatus.OK)
+    public String registerUser(
+            @RequestParam String autor,
+            @RequestParam String kategoria,
+            @RequestParam String tytul,
+            @RequestParam String tekst
+    ){
+        Ogloszenie post = ogloszenieService.createPost(autor, kategoria, tytul, tekst);
+
+        return gson.toJson(ogloszenieAssembler.toOgloszenieDto(post));
     }
 
 }
