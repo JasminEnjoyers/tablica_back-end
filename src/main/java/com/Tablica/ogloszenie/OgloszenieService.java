@@ -26,6 +26,10 @@ public class OgloszenieService {
         return ogloszenieRepository.findAllByKategoria(kategoriaRepository.findFirstByNazwa(nazwa));
     }
 
+    public List<Ogloszenie> getOgloszeniaByAutor(String nazwa){
+        return ogloszenieRepository.findAllByAutor(uzytkownikRepository.findFirstByNazwa(nazwa));
+    }
+
     /*
     public List<Ogloszenie> getOgloszenia(){
         return ogloszenieRepository.findAll();

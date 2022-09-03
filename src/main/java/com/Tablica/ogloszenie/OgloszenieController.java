@@ -1,8 +1,5 @@
 package com.Tablica.ogloszenie;
 
-import com.Tablica.kategoria.Kategoria;
-import com.Tablica.kategoria.KategoriaDto;
-import com.Tablica.uzytkownik.Uzytkownik;
 import com.Tablica.uzytkownik.UzytkownikRepository;
 
 import com.google.gson.Gson;
@@ -35,7 +32,7 @@ public class OgloszenieController {
     UzytkownikRepository uzytkownikRepository;
 
 
-    @GetMapping("/posty")
+    @GetMapping("/posty/kategoria")
     @ResponseStatus(HttpStatus.OK)
     public String getOgloszeniaByKategoria(
             @RequestParam(name = "kategoria", required = false) String nazwaKategorii
@@ -45,6 +42,22 @@ public class OgloszenieController {
             ogloszenia = ogloszenieRepository.findAll();
         } else {
             ogloszenia = ogloszenieService.getOgloszeniaByKategoria(nazwaKategorii);
+        }
+        List<OgloszenieDto> dto = new ArrayList<>();
+        ogloszenia.forEach(ogloszenie -> dto.add(ogloszenieAssembler.toOgloszenieDto(ogloszenie)));
+        return gson.toJson(dto);
+    }
+
+    @GetMapping("/posty/autor")
+    @ResponseStatus(HttpStatus.OK)
+    public String getOgloszeniaByAutor(
+            @RequestParam(name = "autor") String nazwaAutora
+    ){
+        List<Ogloszenie> ogloszenia;
+        if (nazwaAutora == null) {
+            return null;
+        } else {
+            ogloszenia = ogloszenieService.getOgloszeniaByAutor(nazwaAutora);
         }
         List<OgloszenieDto> dto = new ArrayList<>();
         ogloszenia.forEach(ogloszenie -> dto.add(ogloszenieAssembler.toOgloszenieDto(ogloszenie)));
