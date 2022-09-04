@@ -2,6 +2,8 @@ package com.Tablica.obserwowanyPost;
 
 import com.Tablica.ogloszenie.Ogloszenie;
 import com.Tablica.uzytkownik.Uzytkownik;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 

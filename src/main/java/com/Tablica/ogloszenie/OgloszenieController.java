@@ -1,7 +1,9 @@
 package com.Tablica.ogloszenie;
 
+import com.Tablica.obserwowanyPost.ObserwowanyPostRepository;
 import com.Tablica.uzytkownik.UzytkownikRepository;
 
+import com.Tablica.zgloszenie.ZgloszenieRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -30,6 +32,12 @@ public class OgloszenieController {
 
     @Autowired
     UzytkownikRepository uzytkownikRepository;
+
+    @Autowired
+    ObserwowanyPostRepository obserwowanyPostRepository;
+
+    @Autowired
+    ZgloszenieRepository zgloszenieRepository;
 
 
     @GetMapping("/posty/kategoria")
@@ -71,10 +79,24 @@ public class OgloszenieController {
             @PathVariable(name = "kategoria") String kategoria,
             @PathVariable(name = "tytul") String tytul,
             @PathVariable(name = "tekst") String tekst
-    ){
+    ) {
         Ogloszenie post = ogloszenieService.createPost(autor, kategoria, tytul, tekst);
 
         return gson.toJson(ogloszenieAssembler.toOgloszenieDto(post));
     }
 
+    @DeleteMapping("/post/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteZgloszenie(
+            @RequestParam Long ogloszenieId
+    ){
+        Ogloszenie ogloszenie = ogloszenieRepository.findById(ogloszenieId).orElse(null);
+        if(ogloszenie != null){
+            obserwowanyPostRepository.deleteByOgloszenieId(ogloszenieId);
+
+            zgloszenieRepository.deleteByOgloszenieId(ogloszenieId);
+
+            ogloszenieRepository.deleteByOgloszenieId(ogloszenieId);
+        }
+    }
 }
