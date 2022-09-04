@@ -2,6 +2,8 @@ package com.Tablica.zgloszenie;
 
 import com.Tablica.ogloszenie.Ogloszenie;
 import com.Tablica.ogloszenie.OgloszenieRepository;
+import com.Tablica.uzytkownik.Uzytkownik;
+import com.Tablica.uzytkownik.UzytkownikRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class ZgloszenieController {
 
     @Autowired
     OgloszenieRepository ogloszenieRepository;
+
+    @Autowired
+    UzytkownikRepository uzytkownikRepository;
 
     @GetMapping("/reported/all")
     @ResponseStatus(HttpStatus.OK)
@@ -60,6 +65,23 @@ public class ZgloszenieController {
             zgloszenieRepository.deleteAll(zgloszenia);
 
         }
+    }
+
+    @PutMapping("/report/add")
+    @ResponseStatus(HttpStatus.OK)
+    public void addZgloszenie(
+            @RequestParam Long ogloszenieId,
+            @RequestParam Long uzytkownikId
+    ){
+        Uzytkownik uzytkownik = uzytkownikRepository.findById(uzytkownikId).orElse(null);
+
+        Ogloszenie ogloszenie = ogloszenieRepository.findById(ogloszenieId).orElse(null);
+
+        if(uzytkownik != null && ogloszenie != null){
+            Zgloszenie zgloszenie = new Zgloszenie(uzytkownik,ogloszenie,"");
+            zgloszenieRepository.save(zgloszenie);
+        }
+
     }
 
 }
