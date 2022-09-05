@@ -106,16 +106,16 @@ public class OgloszenieController {
         }
     }
 
-    @PutMapping("/post/edytuj/{id}/{autor}/{kategoria}/{tytul}/{tekst}")
+    @PutMapping("/posty/edytuj/{id}/{autor}/{kategoria}/{tytul}/{tekst}")
     @ResponseStatus(HttpStatus.OK)
-    public String editOgloszenie(
-            @PathVariable(name = "id") String id,
+    public boolean editOgloszenie(
+            @PathVariable(name = "id") long id,
             @PathVariable(name = "autor") String autor,
             @PathVariable(name = "kategoria") String kategoria,
             @PathVariable(name = "tytul") String tytul,
             @PathVariable(name = "tekst") String tekst
     ){
-        Ogloszenie post = ogloszenieRepository.findFirstById(parseLong(id));
+        Ogloszenie post = ogloszenieRepository.findFirstById(id);
         if(post.getAutor().getNazwa().equals(autor)) {
             post.setKategoria(kategoriaRepository.findFirstByNazwa(kategoria));
             post.setTytul(tytul);
@@ -123,11 +123,11 @@ public class OgloszenieController {
 
             try{
                 ogloszenieRepository.save(post);
-                return gson.toJson(ogloszenieAssembler.toOgloszenieDto(post));
+                return true;
             }catch (Exception e){
                 throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
-        return null;
+        return false;
     }
 }

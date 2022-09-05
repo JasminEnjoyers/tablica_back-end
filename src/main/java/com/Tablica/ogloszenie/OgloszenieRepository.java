@@ -18,7 +18,7 @@ public interface OgloszenieRepository extends JpaRepository<Ogloszenie,Long> {
     List<Ogloszenie> findAllByKategoria(Kategoria kategoria);
 
     List<Ogloszenie> findAllByAutor(Uzytkownik autor);
-    
+
     Ogloszenie findFirstById(long id);
 
     @Modifying
