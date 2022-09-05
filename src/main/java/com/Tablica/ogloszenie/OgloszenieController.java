@@ -1,17 +1,22 @@
 package com.Tablica.ogloszenie;
 
+import com.Tablica.kategoria.KategoriaRepository;
+import com.Tablica.obserwowanyPost.ObserwowanyPostRepository;
 import com.Tablica.uzytkownik.UzytkownikRepository;
 
+import com.Tablica.zgloszenie.ZgloszenieRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Long.parseLong;
 
 
 @CrossOrigin(allowCredentials = "true", origins = "/**")
@@ -30,6 +35,15 @@ public class OgloszenieController {
 
     @Autowired
     UzytkownikRepository uzytkownikRepository;
+
+    @Autowired
+    ObserwowanyPostRepository obserwowanyPostRepository;
+
+    @Autowired
+    ZgloszenieRepository zgloszenieRepository;
+
+    @Autowired
+    KategoriaRepository kategoriaRepository;
 
 
     @GetMapping("/posty/kategoria")
@@ -66,7 +80,7 @@ public class OgloszenieController {
 
     @PostMapping("/posty/nowy/{autor}/{kategoria}/{tytul}/{tekst}")
     @ResponseStatus(HttpStatus.OK)
-    public String registerUser(
+    public String addOgloszenie(
             @PathVariable(name = "autor") String autor,
             @PathVariable(name = "kategoria") String kategoria,
             @PathVariable(name = "tytul") String tytul,
@@ -77,4 +91,43 @@ public class OgloszenieController {
         return gson.toJson(ogloszenieAssembler.toOgloszenieDto(post));
     }
 
+    @DeleteMapping("/post/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteOgloszenie(
+            @RequestParam Long ogloszenieId
+    ){
+        Ogloszenie ogloszenie = ogloszenieRepository.findById(ogloszenieId).orElse(null);
+        if(ogloszenie != null){
+            obserwowanyPostRepository.deleteByOgloszenieId(ogloszenieId);
+
+            zgloszenieRepository.deleteByOgloszenieId(ogloszenieId);
+
+            ogloszenieRepository.deleteByOgloszenieId(ogloszenieId);
+        }
+    }
+
+    @PutMapping("/post/edytuj/{id}/{autor}/{kategoria}/{tytul}/{tekst}")
+    @ResponseStatus(HttpStatus.OK)
+    public String editOgloszenie(
+            @PathVariable(name = "id") String id,
+            @PathVariable(name = "autor") String autor,
+            @PathVariable(name = "kategoria") String kategoria,
+            @PathVariable(name = "tytul") String tytul,
+            @PathVariable(name = "tekst") String tekst
+    ){
+        Ogloszenie post = ogloszenieRepository.findFirstById(parseLong(id));
+        if(post.getAutor().getNazwa().equals(autor)) {
+            post.setKategoria(kategoriaRepository.findFirstByNazwa(kategoria));
+            post.setTytul(tytul);
+            post.setTekst(tekst);
+
+            try{
+                ogloszenieRepository.save(post);
+                return gson.toJson(ogloszenieAssembler.toOgloszenieDto(post));
+            }catch (Exception e){
+                throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+        return null;
+    }
 }
