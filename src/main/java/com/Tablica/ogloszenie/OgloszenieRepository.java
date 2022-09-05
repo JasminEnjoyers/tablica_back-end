@@ -19,6 +19,8 @@ public interface OgloszenieRepository extends JpaRepository<Ogloszenie,Long> {
 
     List<Ogloszenie> findAllByAutor(Uzytkownik autor);
 
+    Ogloszenie findFirstById(long id);
+
     @Modifying
     @Query("delete from Ogloszenie where id = ?1")
     void deleteByOgloszenieId(Long ogloszenieId);
