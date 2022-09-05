@@ -45,7 +45,6 @@ public class OgloszenieController {
     @Autowired
     KategoriaRepository kategoriaRepository;
 
-
     @GetMapping("/posty/kategoria")
     @ResponseStatus(HttpStatus.OK)
     public String getOgloszeniaByKategoria(
@@ -85,7 +84,7 @@ public class OgloszenieController {
             @PathVariable(name = "kategoria") String kategoria,
             @PathVariable(name = "tytul") String tytul,
             @PathVariable(name = "tekst") String tekst
-    ){
+    ) {
         Ogloszenie post = ogloszenieService.createPost(autor, kategoria, tytul, tekst);
 
         return gson.toJson(ogloszenieAssembler.toOgloszenieDto(post));
@@ -93,7 +92,8 @@ public class OgloszenieController {
 
     @DeleteMapping("/post/delete")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteOgloszenie(
+
+    public void deleteZgloszenie(
             @RequestParam Long ogloszenieId
     ){
         Ogloszenie ogloszenie = ogloszenieRepository.findById(ogloszenieId).orElse(null);

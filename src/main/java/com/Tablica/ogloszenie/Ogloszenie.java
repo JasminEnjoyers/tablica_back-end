@@ -2,6 +2,8 @@ package com.Tablica.ogloszenie;
 
 import com.Tablica.kategoria.Kategoria;
 import com.Tablica.uzytkownik.Uzytkownik;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -14,11 +16,11 @@ public class Ogloszenie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "id_autora")
     private Uzytkownik autor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "id_kategorii")
     private Kategoria kategoria;
 
