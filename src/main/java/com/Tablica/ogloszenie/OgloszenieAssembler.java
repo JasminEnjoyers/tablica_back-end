@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OgloszenieAssembler {
 
-    OgloszenieDto toOgloszenieDto(Ogloszenie post){
+    public OgloszenieDto toOgloszenieDto(Ogloszenie post){
         OgloszenieDto dto = new OgloszenieDto(
                 post.getId(),
                 post.getTytul(),
