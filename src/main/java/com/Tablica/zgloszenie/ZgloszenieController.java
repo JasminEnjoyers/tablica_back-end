@@ -77,7 +77,9 @@ public class ZgloszenieController {
 
         Ogloszenie ogloszenie = ogloszenieRepository.findById(ogloszenieId).orElse(null);
 
-        if(uzytkownik != null && ogloszenie != null){
+        List<Zgloszenie> zgloszone = zgloszenieRepository.findAllByUzytkownikAndOgloszenie(uzytkownik, ogloszenie);
+
+        if(uzytkownik != null && ogloszenie != null && zgloszone.isEmpty()){
             Zgloszenie zgloszenie = new Zgloszenie(uzytkownik,ogloszenie,"");
             zgloszenieRepository.save(zgloszenie);
         }
