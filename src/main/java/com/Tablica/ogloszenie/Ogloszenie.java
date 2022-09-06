@@ -1,12 +1,14 @@
 package com.Tablica.ogloszenie;
 
 import com.Tablica.kategoria.Kategoria;
+import com.Tablica.obserwowanyPost.ObserwowanyPost;
 import com.Tablica.uzytkownik.Uzytkownik;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 
 @Entity
@@ -36,13 +38,16 @@ public class Ogloszenie {
     @Column (name = "data_dodania")
     private Date data;
 
+    @OneToMany (mappedBy = "id")
+    private List<ObserwowanyPost> obserwowania;
+
 
 //CONSTRUCTORS
 
     public Ogloszenie() {
     }
 
-    public Ogloszenie(Uzytkownik autor, Kategoria kategoria, long ocena, String tytul, String tekst, Date data) {
+    public Ogloszenie(Uzytkownik autor, Kategoria kategoria, long ocena, String tytul, String tekst, Date data, List<ObserwowanyPost> obserwujacy) {
         super();
         this.autor = autor;
         this.kategoria = kategoria;
@@ -50,6 +55,7 @@ public class Ogloszenie {
         this.tytul = tytul;
         this.tekst = tekst;
         this.data = data;
+        this.obserwowania = obserwujacy;
     }
 
     //GETTERS AND SETTERS
@@ -109,5 +115,13 @@ public class Ogloszenie {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public List<ObserwowanyPost> getObserwowania() {
+        return obserwowania;
+    }
+
+    public void setObserwowania(List<ObserwowanyPost> obserwujacy) {
+        this.obserwowania = obserwujacy;
     }
 }

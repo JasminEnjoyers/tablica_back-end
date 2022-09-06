@@ -1,8 +1,5 @@
 package com.Tablica.ogloszenie;
 
-
-import java.sql.Date;
-
 public class OgloszenieDto {
     private long id;
     private String tytul;
@@ -11,6 +8,7 @@ public class OgloszenieDto {
     private long ocena;
     private String data;
     private String kategoria;
+    private boolean obserwuje;
 
 
 //CONSTRUCTORS
@@ -18,7 +16,7 @@ public class OgloszenieDto {
     public OgloszenieDto() {
     }
 
-    public OgloszenieDto(long id, String tytul, String tekst, String autor, String data, long ocena,  String kategoria) {
+    public OgloszenieDto(long id, String tytul, String tekst, String autor, String data, long ocena,  String kategoria, boolean obserwuje) {
         this.id = id;
         this.tytul = tytul;
         this.tekst = tekst;
@@ -26,5 +24,6 @@ public class OgloszenieDto {
         this.ocena = ocena;
         this.data = data;
         this.kategoria = kategoria;
+        this.obserwuje = obserwuje;
     }
 }
