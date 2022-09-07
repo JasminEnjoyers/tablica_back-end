@@ -15,6 +15,8 @@ public class UzytkownikService {
     @Autowired
     GrupaRepository grupaRepository;
 
+    private PasswordEncoder passwordEncoder = new PasswordEncoder();
+
     public long getIdUzytkownikaByNazwa(String nazwa){
         return uzytkownikRepository.findFirstByNazwa(nazwa).getId();
     }
@@ -23,7 +25,7 @@ public class UzytkownikService {
         Uzytkownik user = uzytkownikRepository.findFirstByNazwa(login);
 
         if(user != null) try {
-            if (user.getHaslo().equals(password)) {
+            if (passwordEncoder.passwordsMatching(user.getHaslo(),password)) {
                 return user;
             }
         }catch (Exception e){}
@@ -32,7 +34,7 @@ public class UzytkownikService {
     }
 
     public Uzytkownik createUser(String login, String password, String email, String phone, String firstName, String lastName){
-        Uzytkownik user = new Uzytkownik(email, (grupaRepository.findFirstByNazwa("user")),phone,0,login,firstName,lastName,password);
+        Uzytkownik user = new Uzytkownik(email, (grupaRepository.findFirstByNazwa("user")),phone,0,login,firstName,lastName,passwordEncoder.encodePassword(password));
 
         try{
             uzytkownikRepository.save(user);
