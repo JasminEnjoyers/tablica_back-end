@@ -46,7 +46,7 @@ public class ObserwowanyPostController {
             Set<OgloszenieDto> ogloszenia = new HashSet<OgloszenieDto>();
 
             for (ObserwowanyPost obserwowany: obserwowane) {
-                ogloszenia.add(ogloszenieAssembler.toOgloszenieDto(obserwowany.getOgloszenie()));
+                ogloszenia.add(ogloszenieAssembler.toOgloszenieDto(obserwowany.getOgloszenie(),uzytkownik));
             }
 
             return gson.toJson(ogloszenia);

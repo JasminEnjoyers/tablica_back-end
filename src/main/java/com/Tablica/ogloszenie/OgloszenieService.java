@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,7 +46,9 @@ public class OgloszenieService {
                 0,  //ocena
                 tytul,
                 tekst,
-                new Date(new java.util.Date().getTime()));
+                new Date(new java.util.Date().getTime()),
+                new ArrayList<>()
+                );
 
         try{
             ogloszenieRepository.save(post);

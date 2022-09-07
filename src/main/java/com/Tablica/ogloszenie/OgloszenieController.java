@@ -2,6 +2,7 @@ package com.Tablica.ogloszenie;
 
 import com.Tablica.kategoria.KategoriaRepository;
 import com.Tablica.obserwowanyPost.ObserwowanyPostRepository;
+import com.Tablica.uzytkownik.Uzytkownik;
 import com.Tablica.uzytkownik.UzytkownikRepository;
 
 import com.Tablica.zgloszenie.ZgloszenieRepository;
@@ -48,16 +49,20 @@ public class OgloszenieController {
     @GetMapping("/posty/kategoria")
     @ResponseStatus(HttpStatus.OK)
     public String getOgloszeniaByKategoria(
-            @RequestParam(name = "kategoria", required = false) String nazwaKategorii
+            @RequestParam(name = "kategoria", required = false) String nazwaKategorii,
+            @RequestParam(name = "uzytkownik", required = false) String nazwaUzytkownika
     ){
         List<Ogloszenie> ogloszenia;
+        Uzytkownik user = uzytkownikRepository.findFirstByNazwa(nazwaUzytkownika);
         if (nazwaKategorii == null) {
             ogloszenia = ogloszenieRepository.findAll();
         } else {
             ogloszenia = ogloszenieService.getOgloszeniaByKategoria(nazwaKategorii);
         }
         List<OgloszenieDto> dto = new ArrayList<>();
-        ogloszenia.forEach(ogloszenie -> dto.add(ogloszenieAssembler.toOgloszenieDto(ogloszenie)));
+        for (Ogloszenie ogloszenie : ogloszenia) {
+            dto.add(ogloszenieAssembler.toOgloszenieDto(ogloszenie, user));
+        }
         return gson.toJson(dto);
     }
 
@@ -73,13 +78,13 @@ public class OgloszenieController {
             ogloszenia = ogloszenieService.getOgloszeniaByAutor(nazwaAutora);
         }
         List<OgloszenieDto> dto = new ArrayList<>();
-        ogloszenia.forEach(ogloszenie -> dto.add(ogloszenieAssembler.toOgloszenieDto(ogloszenie)));
+        ogloszenia.forEach(ogloszenie -> dto.add(ogloszenieAssembler.toOgloszenieDto(ogloszenie, null)));
         return gson.toJson(dto);
     }
 
     @PostMapping("/posty/nowy/{autor}/{kategoria}/{tytul}/{tekst}")
     @ResponseStatus(HttpStatus.OK)
-    public String addOgloszenie(
+    public boolean addOgloszenie(
             @PathVariable(name = "autor") String autor,
             @PathVariable(name = "kategoria") String kategoria,
             @PathVariable(name = "tytul") String tytul,
@@ -87,7 +92,7 @@ public class OgloszenieController {
     ) {
         Ogloszenie post = ogloszenieService.createPost(autor, kategoria, tytul, tekst);
 
-        return gson.toJson(ogloszenieAssembler.toOgloszenieDto(post));
+        return true;
     }
 
     @DeleteMapping("/post/delete")
