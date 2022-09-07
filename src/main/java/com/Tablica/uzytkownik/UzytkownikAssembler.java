@@ -11,7 +11,6 @@ public class UzytkownikAssembler {
                     user.getEmail(),
                     user.getGrupa().getId(),
                     user.getTelefon(),
-                    user.getReputacja(),
                     user.getNazwa(),
                     user.getImie(),
                     user.getNazwisko(),

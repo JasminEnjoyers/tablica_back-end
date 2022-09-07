@@ -27,9 +27,6 @@ public class Ogloszenie {
     private Kategoria kategoria;
 
     @Column
-    private long ocena;
-
-    @Column
     private String tytul;
 
     @Column
@@ -47,11 +44,10 @@ public class Ogloszenie {
     public Ogloszenie() {
     }
 
-    public Ogloszenie(Uzytkownik autor, Kategoria kategoria, long ocena, String tytul, String tekst, Date data, List<ObserwowanyPost> obserwujacy) {
+    public Ogloszenie(Uzytkownik autor, Kategoria kategoria, String tytul, String tekst, Date data, List<ObserwowanyPost> obserwujacy) {
         super();
         this.autor = autor;
         this.kategoria = kategoria;
-        this.ocena = ocena;
         this.tytul = tytul;
         this.tekst = tekst;
         this.data = data;
@@ -83,14 +79,6 @@ public class Ogloszenie {
 
     public void setKategoria(Kategoria kategoria) {
         this.kategoria = kategoria;
-    }
-
-    public long getOcena() {
-        return ocena;
-    }
-
-    public void setOcena(long ocena) {
-        this.ocena = ocena;
     }
 
     public String getTytul() {

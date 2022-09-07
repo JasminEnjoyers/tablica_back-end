@@ -43,7 +43,6 @@ public class OgloszenieService {
         Ogloszenie post = new Ogloszenie(
                 uzytkownikRepository.findFirstByNazwa(autor),
                 kategoriaRepository.findFirstByNazwa(kategoria),
-                0,  //ocena
                 tytul,
                 tekst,
                 new Date(new java.util.Date().getTime()),

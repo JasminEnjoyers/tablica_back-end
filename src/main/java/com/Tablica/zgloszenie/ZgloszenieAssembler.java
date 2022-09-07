@@ -1,7 +1,6 @@
 package com.Tablica.zgloszenie;
 
 import com.Tablica.ogloszenie.Ogloszenie;
-import com.Tablica.uzytkownik.Uzytkownik;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +28,6 @@ public class ZgloszenieAssembler {
                     ogloszenie.getTytul(),
                     ogloszenie.getTekst(),
                     ogloszenie.getAutor().getNazwa(),
-                    ogloszenie.getOcena(),
                     ogloszenie.getData().toString(),
                     ogloszenie.getKategoria().getNazwa(),
                     osobyZglaszajace

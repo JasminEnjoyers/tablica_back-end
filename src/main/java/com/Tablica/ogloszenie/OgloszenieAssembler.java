@@ -27,7 +27,6 @@ public class OgloszenieAssembler {
                 post.getTekst(),
                 post.getAutor().getNazwa(),
                 post.getData().toString(),
-                post.getOcena(),
                 post.getKategoria().getNazwa(),
                 isObserved(post, user)
         );
