@@ -15,6 +15,7 @@ import static java.lang.Long.parseLong;
 public class UzytkownikController {
 
     private Gson gson = new GsonBuilder().create();
+    private PasswordEncoder passwordEncoder = new PasswordEncoder();
 
     @Autowired
     UzytkownikService uzytkownikService;
@@ -31,9 +32,13 @@ public class UzytkownikController {
             @RequestParam String login,
             @RequestParam String password
     ){
-        Uzytkownik user = uzytkownikService.finduser(login,password);
+        Uzytkownik user = uzytkownikRepository.findFirstByNazwa(login);
 
-        return gson.toJson(uzytkownikAssembler.toUzytkownikDto(user));
+        if(user != null){
+            if(passwordEncoder.passwordsMatching(password, user.getHaslo())) return gson.toJson(uzytkownikAssembler.toUzytkownikDto(user));
+        }
+        return gson.toJson(null);
+
     }
 
     @PostMapping("/register")
@@ -174,7 +179,7 @@ public class UzytkownikController {
             @RequestParam String newPassword
     ){
         Uzytkownik user = uzytkownikRepository.findById(userId).orElse(null);
-        user.setHaslo(newPassword);
+        user.setHaslo(passwordEncoder.encodePassword(newPassword));
         try {
             uzytkownikRepository.save(user);
             return false;
@@ -191,8 +196,7 @@ public class UzytkownikController {
     ){
         Uzytkownik user = uzytkownikRepository.findById(userId).orElse(null);
 
-        if(user.getHaslo().equals(password)) return true;
-        else return false;
+        return passwordEncoder.passwordsMatching(password, user.getHaslo());
     }
 
     /*@GetMapping("api/uzytkownicy/uzytkownik")
