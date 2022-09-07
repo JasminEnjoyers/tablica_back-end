@@ -22,20 +22,16 @@ public class Zgloszenie {
     @JoinColumn(name = "id_ogloszenia")
     private Ogloszenie ogloszenie;
 
-    @Column
-    private String tekst;
-
 
 //CONSTRUCTORS
 
     public Zgloszenie() {
     }
 
-    public Zgloszenie(Uzytkownik uzytkownik, Ogloszenie ogloszenie, String tekst) {
+    public Zgloszenie(Uzytkownik uzytkownik, Ogloszenie ogloszenie) {
         super();
         this.uzytkownik = uzytkownik;
         this.ogloszenie = ogloszenie;
-        this.tekst = tekst;
     }
 
     //GETTERS AND SETTERS
@@ -64,11 +60,4 @@ public class Zgloszenie {
         this.ogloszenie = ogloszenie;
     }
 
-    public String getTekst() {
-        return tekst;
-    }
-
-    public void setTekst(String tekst) {
-        this.tekst = tekst;
-    }
 }

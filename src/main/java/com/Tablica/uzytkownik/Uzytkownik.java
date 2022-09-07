@@ -26,9 +26,6 @@ public class Uzytkownik {
     private String telefon;
 
     @Column
-    private long reputacja;
-
-    @Column
     private String nazwa;
 
     @Column
@@ -54,12 +51,11 @@ public class Uzytkownik {
     public Uzytkownik() {
     }
 
-    public Uzytkownik(String email, com.Tablica.grupa.Grupa grupa, String telefon, long reputacja, String nazwa, String imie, String nazwisko, String haslo) {
+    public Uzytkownik(String email, com.Tablica.grupa.Grupa grupa, String telefon, String nazwa, String imie, String nazwisko, String haslo) {
         super();
         this.email = email;
         this.Grupa = grupa;
         this.telefon = telefon;
-        this.reputacja = reputacja;
         this.nazwa = nazwa;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -98,14 +94,6 @@ public class Uzytkownik {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
-    }
-
-    public long getReputacja() {
-        return reputacja;
-    }
-
-    public void setReputacja(long reputacja) {
-        this.reputacja = reputacja;
     }
 
     public String getNazwa() {
